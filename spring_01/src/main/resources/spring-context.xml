@@ -2,10 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-    <bean id="reader" class="ru.otus.spring.utils.Reader" >
+    <bean id="ioService" class="ru.otus.spring.service.IOService" >
         <constructor-arg value="spring_01/src/main/resources/files/questions.csv"/>
     </bean>
-    <bean id="service" class="ru.otus.spring.service.ReaderServiceImpl" >
-        <constructor-arg name="reader" ref="reader"/>
+    <bean id="questionsService" class="ru.otus.spring.service.QuestionsServiceImpl">
+        <constructor-arg name="ioService" ref="ioService"/>
+    </bean>
+    <bean id="readerService" class="ru.otus.spring.service.ReaderServiceImpl" >
+        <constructor-arg name="questionsService" ref="questionsService"/>
     </bean>
 </beans>

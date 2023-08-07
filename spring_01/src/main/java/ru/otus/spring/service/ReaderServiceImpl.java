@@ -1,19 +1,20 @@
 package ru.otus.spring.service;
 
-import ru.otus.spring.utils.Reader;
+import ru.otus.spring.models.Question;
 
 import java.util.List;
 
-public class ReaderServiceImpl {
-    private final List<String> questions;
+public class ReaderServiceImpl implements ReaderService {
+    private final List<Question> questions;
 
-    public ReaderServiceImpl(Reader reader){
-        questions = reader.getQuestions();
+    public ReaderServiceImpl(QuestionsServiceImpl questionsService){
+        questions = questionsService.getQuestions();
     }
 
+    @Override
     public void print() {
-        for (String question: questions) {
-            System.out.println(question);
+        for (Question question: questions) {
+            System.out.println(question.getQuestion());
         }
     }
 }

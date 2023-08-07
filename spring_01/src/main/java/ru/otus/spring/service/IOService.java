@@ -1,4 +1,6 @@
-package ru.otus.spring.utils;
+package ru.otus.spring.service;
+
+import ru.otus.spring.service.processor.InputService;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,27 +8,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reader {
+public class IOService implements InputService {
     private final String PATH;
 
-    public Reader(String path) {
+    public IOService(String path) {
         PATH = path;
     }
 
-    public List<String> getQuestions() {
-        List<String> questions = new ArrayList<>();
+    @Override
+    public List<String> getText() {
+        List<String> text = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(PATH))) {
             String line = reader.readLine();
-
             while (line != null) {
-                System.out.println(line);
-                questions.add(line);
+                text.add(line);
                 line = reader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return questions;
+        return text;
     }
 }
