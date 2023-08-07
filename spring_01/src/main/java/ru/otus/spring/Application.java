@@ -1,13 +1,15 @@
 package ru.otus.spring;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.otus.spring.service.ReaderService;
 
-@SpringBootApplication
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("/spring-context.xml");
+        ReaderService service = context.getBean(ReaderService.class);
+        service.print();
+        context.close();
     }
 
 }
