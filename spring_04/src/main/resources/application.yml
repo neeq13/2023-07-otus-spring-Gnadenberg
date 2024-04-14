@@ -1,0 +1,8 @@
+spring:
+  messages:
+    basename: "l10n/local"
+    encoding: "UTF-8"
+
+application:
+  path: src/main/resources/files/questions.csv
+  locale: ru
